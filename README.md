@@ -15,9 +15,9 @@ Join me in this session to explore and discuss the new features of Flyway v7 whi
 * Familiarity with containers
 
 ## **Demos**  
-* [How to create demo environment](Demo_01)
-* [Regular migrations](Demo_02)
-* [Special migrations - New features](Demo_03)
+* [How to create demo environment](Demo_00)
+* [Regular migrations](Demo_01)
+* [Special migrations - New features](Demo_02)
 
 ## Questions?
 If you have questions or comments about this demo, don't hesitate to contact me at <crobles@dbamastery.com>
