@@ -1,14 +1,9 @@
 # Demo 01 - Regular migrations
 
-* Create PostgreSQL container with BudgetFoods empty shell database
-* Connect to PostgreSQL using psql (within Docker)
-* Execute basic PostgreSQL commands
+* Connect to BudgetFoods database using PgAdmin
+* Connect to database using psql (within Docker) --> Optional 👀
 * Review Flyway migrations folder structure
-* Flyway migrations using Docker containers (V1 - BudgetFoods)
-* Flyway migrations using Docker containers (V2 - BudgetFoods)
-* Check BudgetFoods schema changes
-* Redo migrations (all at once)
-* Check PostgreSQL BudgetFoods database schema
+* Perform regular migration
 
 ## Questions?
 If you have questions or comments about this demo, don't hesitate to contact me at <crobles@dbamastery.com>

@@ -1,14 +1,9 @@
 # Demo 00 - Creating demo environment
 
-* Create PostgreSQL container with BudgetFoods empty shell database
-* Connect to PostgreSQL using psql (within Docker)
-* Execute basic PostgreSQL commands
-* Review Flyway migrations folder structure
-* Flyway migrations using Docker containers (V1 - BudgetFoods)
-* Flyway migrations using Docker containers (V2 - BudgetFoods)
-* Check BudgetFoods schema changes
-* Redo migrations (all at once)
-* Check PostgreSQL BudgetFoods database schema
+* Check docker compose file
+* Initiate demo environment with Docker compose
+* Check all components (containers, network, volumes)
+* Destroy demo environment
 
 ## Questions?
 If you have questions or comments about this demo, don't hesitate to contact me at <crobles@dbamastery.com>

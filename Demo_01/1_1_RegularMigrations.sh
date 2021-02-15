@@ -1,14 +1,9 @@
-# Demo 01 - Getting started with Flyway migrations using Docker
+# Demo 01 - Regular migrations
 # 
-#   1- Create PostgreSQL container with BudgetFoods empty shell database
-#   2- Connect to PostgreSQL using psql (within Docker)
-#   3- Execute basic PostgreSQL commands
-#   4- Review Flyway migrations folder structure
-#   5- Flyway migrations using Docker containers (V1 - BudgetFoods)
-#   6- Flyway migrations using Docker containers (V2 - BudgetFoods)
-#   7- Check BudgetFoods schema changes
-#   8- Redo migrations (all at once)
-#   9- Check PostgreSQL BudgetFoods database schema
+#   1- Connect to BudgetFoods database using PgAdmin
+#   2- Connect to database using psql (within Docker) --> Optional 👀
+#   3- Review Flyway migrations folder structure
+#   4- Perform regular migration
 # -----------------------------------------------------------------------------
 # Reference:
 #   https://flywaydb.org/documentation/
@@ -18,6 +13,7 @@
 #
 # JDBC URL
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
+
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_01;
@@ -65,6 +61,7 @@ Demo_01
 code ./ConfigFile/flyway.conf
 echo $FLYWAY_CONFIG_FILES
 
+# 4- Perform regular migration
 # Initializing flyway
 # flyway -configFiles="./ConfigFile/flyway.conf" info --> No environment variable
 flyway info
