@@ -1,0 +1,59 @@
+version: "3.9"  # optional since v1.27.0
+services:  
+  budgetfoods-db:
+      container_name: BudgetFoods-PG
+      hostname: BudgetFoods-PG
+      image: postgres:12-alpine
+      restart: always
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: CmdL1n3-r0ck5
+        POSTGRES_DB: BudgetFoods
+      volumes:
+        - vlm_Data-BudgetFoods/var/lib/postgresql/data
+      networks:
+          bfnet-pg:
+              ipv4_address: 172.18.0.2
+      ports:
+        - "5432:5432"
+  ebiks-db:
+      container_name: eBikes-PG
+      hostname: eBikes-PG
+      image: postgres:12-alpine
+      restart: always
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: CmdL1n3-r0ck5
+        POSTGRES_DB: eBikes
+      volumes:
+        - vlm_Data-eBikes:/var/lib/postgresql/data
+      networks:
+          bfnet-pg:
+              ipv4_address: 172.18.0.3
+      ports:
+        - "5434:5432"
+  pgadmin:
+      container_name: PGAdmin4
+      image: dpage/pgadmin4
+      restart: always
+      environment:
+        PGADMIN_DEFAULT_EMAIL: crobles@dbamastery.com
+        PGADMIN_DEFAULT_PASSWORD: CmdL1n3-r0ck5
+      volumes:
+        - vlm_Data-pgAdmin:/var/lib/pgadmin
+      networks:
+          bfnet-pg:
+              ipv4_address: 172.18.0.4
+      ports:
+        - "5050:80"
+networks:
+    bfnet-pg:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.0/16
+
+volumes:
+  vlm_Data-BudgetFoods:
+  vlm_Data-eBikes:
+  vlm_Data-pgAdmin:
