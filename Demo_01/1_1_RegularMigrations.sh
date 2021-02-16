@@ -17,7 +17,7 @@
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_01;
-FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/ConfigFile/flyway.conf;
+export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/ConfigFile/flyway.conf;
 
 # Environment Cleanup 
 # flyway -configFiles="./ConfigFile/flyway.conf" clean
@@ -50,12 +50,21 @@ Demo_01
 ├── ConfigFile
 │   └── flyway.conf
 └── SQLScripts
-    ├── V1.1__Create-CustomerRelated-Tables.sql
-    ├── V1.2__Create-ProductRelated-Tables.sql
-    ├── V1.3__Create-RegionsRelated-Tables.sql
-    ├── V2.1__Load-CustomerRelated-data.sql
-    ├── V2.2__Load-ProductsRelated-data.sql
-    └── V2.3__Load-RegionsRelated-data.sql
+    ├── Repeatable
+    ├── Undo
+    │   ├── U1.1__Drop-CustomerRelated-Tables.sql
+    │   ├── U1.2__Drop-ProductRelated-Tables.sql
+    │   ├── U1.3__Drop-RegionsRelated-Tables.sql
+    │   ├── U2.1__Delete-CustomerRelated-data.sql
+    │   ├── U2.2__Delete-ProductsRelated-data.sql
+    │   └── U2.3__Delete-RegionsRelated-data.sql
+    └── Versioned
+        ├── V1.1__Create-CustomerRelated-Tables.sql
+        ├── V1.2__Create-ProductRelated-Tables.sql
+        ├── V1.3__Create-RegionsRelated-Tables.sql
+        ├── V2.1__Load-CustomerRelated-data.sql
+        ├── V2.2__Load-ProductsRelated-data.sql
+        └── V2.3__Load-RegionsRelated-data.sql
 
 # Flyway config file
 code ./ConfigFile/flyway.conf
@@ -71,3 +80,6 @@ flyway migrate
 
 # Check status
 flyway info
+
+# Undo last migration
+flyway undo

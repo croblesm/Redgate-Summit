@@ -16,17 +16,17 @@ services:
               ipv4_address: 172.18.0.2
       ports:
         - "5432:5432"
-  ebiks-db:
-      container_name: eBikes-PG
-      hostname: eBikes-PG
+  globe-db:
+      container_name: Globe-PG
+      hostname: Globe-PG
       image: postgres:12-alpine
       restart: always
       environment:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: CmdL1n3-r0ck5
-        POSTGRES_DB: eBikes
+        POSTGRES_DB: Globe
       volumes:
-        - vlm_Data-eBikes:/var/lib/postgresql/data
+        - vlm_Data-Globe:/var/lib/postgresql/data
       networks:
           bfnet-pg:
               ipv4_address: 172.18.0.3
@@ -55,5 +55,5 @@ networks:
 
 volumes:
   vlm_Data-BudgetFoods:
-  vlm_Data-eBikes:
+  vlm_Data-Globe:
   vlm_Data-pgAdmin:
