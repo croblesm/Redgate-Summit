@@ -1,8 +1,7 @@
-
 -- ==============================================================================
 -- 
--- Script name   :   1_2_BudgetFoodsDatabase.sql
--- Description   :   Check BudgetFoods database after Flyway migrations
+-- Script name   :   R__LakesView.sql
+-- Description   :   SQL migration to create Lakes view
 -- Author        :   Carlos Robles
 -- Email         :   crobles@dbamastery.com
 -- Twitter       :   @dbamastery
@@ -12,7 +11,6 @@
 -- 
 -- ==============================================================================
 
--- Checking customers, products and orders table data
-SELECT * FROM public.customers;
-SELECT * FROM public.products;
-SELECT * FROM public.orders;
+-- Create lakes view
+CREATE VIEW vw_lakes AS 
+    SELECT * FROM lakes;

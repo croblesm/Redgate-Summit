@@ -14,7 +14,6 @@
 # JDBC URL
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
 
-
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_02;
 export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/ConfigFile/flyway.conf;
@@ -41,9 +40,6 @@ flyway info -infoOfState="Pending"
 
 # Combining filters with JSON outpout 👍
 flyway info -outputType=json -infoOfState="Pending"
-
-# PGAdmin from web browser
-open http://localhost:5050/
 
 # 2- Updating configuration
 # Change config file configuration
@@ -86,10 +82,15 @@ flyway migrate
 
 # 4- Application improvements
 
-# Feature lakes information, description, dimensions and water quality
+# New Feature to show information about all lakes around the globe, including a description, its dimensions and water quality
 # ~ 117 millions of rows
-# Copy scripts from Cherry Pick to SQLCripts/Versioned folder
-flyway migrate
+code./CherryPick/V3.1__Create-LakesTable.sql
+code./CherryPick/R__LakesView.sql
+code./CherryPick/V3.2__Load-Lakes-TableData.sql
+
+# Copy scripts from Cherry Pick to SQLScripts/Versioned folder
+cp ./CherryPick/V3.1__Create-LakesTable.sql ./SQLScripts/Versioned/V3.1__Create-LakesTable.sql
+cp ./CherryPick/V3.2__Load-Lakes-TableData.sql ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
 
 # 5- Enable cherry pick
 # Modify flyway config file
@@ -100,20 +101,29 @@ cat $FLYWAY_CONFIG_FILES
 
 # 6- Perform cherry pick migrations
 # Excluding long running migration
-flyway migrate -cherryPick="3.1,LakesView.sql"
+flyway migrate -cherryPick="3.1,LakesView"
 
-# Including only long running migration, out of order
-# Modify flyway config file
+# Later during the day
+# Including long running migration only, out of order
+cp ./CherryPick/R__LakesView.sql ./SQLScripts/Repeatable/R__LakesView.sql
+code ./SQLScripts/Repeatable/R__LakesView.sql
+
+# Perform migration
 flyway migrate -cherryPick="3.2"
 
 # 7- Hot-fix synchronization
 
-# Hot fixes
+# Missing flags picture, adding column manually
+# PGAdmin from web browser
+open http://localhost:5050/
 
-V1__create_tables.sql
-V2__modify_tables.sql
-V3__create_views.sql
+# Migrations synchronization
+# Copy scripts from Hotfix to SQLScripts/Versioned folder
+cp ./Hotfix/V4.1__Add-FlagColumn-CountriesTable.sql ./SQLScripts/Versioned/V4.1__Add-FlagColumn-CountriesTable.sql
+cp ./Hotfix/V4.2__Load-CountryFlags-TableData.sql ./SQLScripts/Versioned/V4.2__Load-CountryFlags-TableData.sql
 
-migrate -skipExecutingMigrations=true
+# Perform migration, skipping execution
+flyway migrate -skipExecutingMigrations=true
 
-docker exec -it eBikes-PG psql -U postgres -d Globe
+# Check migrations state
+flyway info
