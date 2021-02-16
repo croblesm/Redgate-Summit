@@ -13,6 +13,7 @@
 #
 # JDBC URL
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
+# psql -h localhost -p 5434 -U postgres -d Globe
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_02;

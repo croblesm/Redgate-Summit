@@ -13,7 +13,7 @@
 #
 # JDBC URL
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
-
+# psql -h localhost -U postgres -d BudgetFoods
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_01;
