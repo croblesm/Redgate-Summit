@@ -1,9 +1,15 @@
 # Demo 02 - Flyway v7 new features
 
-* Connect to BudgetFoods database using PgAdmin
-* Connect to database using psql (within Docker) --> Optional 👀
-* Review Flyway migrations folder structure
-* Perform regular migration
+* Filtering info output from previous migrations
+* Changing target database (updating config file)
+* Review and perform Flyway migrations
+* World Globe application - New feature scenario
+* Enable out of order migrations
+* Perform cherry pick migrations
+* World Globe application - Hot-fix scenario
+* Manual change
+* Generate script and synchronize migrations
+* Perform migration, skipping execution
 
 ## Questions?
 If you have questions or comments about this demo, don't hesitate to contact me at <crobles@dbamastery.com>

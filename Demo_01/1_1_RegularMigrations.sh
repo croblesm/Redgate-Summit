@@ -1,19 +1,16 @@
 # Demo 01 - Regular migrations
 # 
 #   1- Connect to BudgetFoods database using PgAdmin
-#   2- Connect to database using psql (within Docker) --> Optional 👀
-#   3- Review Flyway migrations folder structure
-#   4- Perform regular migration
+#   2- Review Flyway migrations folder structure
+#   3- Flyway migration example
 # -----------------------------------------------------------------------------
 # Reference:
 #   https://flywaydb.org/documentation/
-#   https://github.com/flyway/flyway-docker
-#   https://hub.docker.com/r/flyway/flyway
-#   https://github.com/pthom/northwind_psql
+#   https://flywaydb.org/documentation/usage/commandline/
 #
-# JDBC URL
-# PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
-# psql -h localhost -U postgres -d BudgetFoods
+# PostgreSQL JDBC connection string:       
+# jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
+#
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_01;
@@ -23,14 +20,15 @@ export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/Config
 # flyway -configFiles="./ConfigFile/flyway.conf" clean
 # docker-compose down
 
-# 1- Connect to BudgetFoods database using PgAdmin
+# 1- Connect to BudgetFoods database
+# PostgreSQL running on a container 🐘 🐳
 # Container status 
 docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
 
-# PGAdmin from web browser
+# Use PGAdmin from local web browser
 open http://localhost:5050/
 
-# 2- Connect to database using psql (within Docker) --> Optional 👀
+# Connect to database using psql (within Docker) --> Optional 👀
 docker exec -it BudgetFoods-PG psql -U postgres -d BudgetFoods
 
 # List all databases
@@ -45,7 +43,7 @@ SELECT table_name FROM information_schema.tables where table_schema ='public';
 # psql command: \quit | \q
 quit;
 
-# 3- Review Flyway migrations folder structure
+# 2- Review Flyway migrations folder structure
 Demo_01
 ├── ConfigFile
 │   └── flyway.conf
@@ -70,7 +68,7 @@ Demo_01
 code ./ConfigFile/flyway.conf
 echo $FLYWAY_CONFIG_FILES
 
-# 4- Perform regular migration
+# 3- Flyway migration example
 # Initializing flyway
 # flyway -configFiles="./ConfigFile/flyway.conf" info --> No environment variable
 flyway info

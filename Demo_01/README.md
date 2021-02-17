@@ -1,9 +1,8 @@
 # Demo 01 - Regular migrations
 
 * Connect to BudgetFoods database using PgAdmin
-* Connect to database using psql (within Docker) --> Optional 👀
 * Review Flyway migrations folder structure
-* Perform regular migration
+* Flyway migration example
 
 ## Questions?
 If you have questions or comments about this demo, don't hesitate to contact me at <crobles@dbamastery.com>

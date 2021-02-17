@@ -1,19 +1,20 @@
-# Demo 01 - Regular migrations
+# Demo 02 - Flyway v7 - New features
 # 
-#   1- Connect to BudgetFoods database using PgAdmin
-#   2- Connect to database using psql (within Docker) --> Optional 👀
-#   3- Review Flyway migrations folder structure
-#   4- Perform regular migration
+#   1- Filtering info output from previous migrations
+#   2- Changing target database (updating config file)
+#   3- Review and perform Flyway migrations
+#   4- World Globe application - New feature scenario
+#   5- Enable out of order migrations
+#   6- Perform cherry pick migrations
+#   7- World Globe application - Hot-fix scenario
+#   8- Manual change
+#   9- Generate script and synchronize migrations
+#   10- Perform migration, skipping execution
 # -----------------------------------------------------------------------------
 # Reference:
 #   https://flywaydb.org/documentation/
-#   https://github.com/flyway/flyway-docker
-#   https://hub.docker.com/r/flyway/flyway
-#   https://github.com/pthom/northwind_psql
+#   https://flywaydb.org/documentation/learnmore/releaseNotes
 #
-# JDBC URL
-# PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
-# psql -h localhost -p 5434 -U postgres -d Globe
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_02;
@@ -23,7 +24,7 @@ export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/Config
 # flyway -configFiles="./ConfigFile/flyway.conf" clean
 # docker-compose down
 
-# 1- Filtering info output
+# 1- Filtering info output from previous migrations
 # Regular migration info
 flyway info
 
@@ -42,7 +43,7 @@ flyway info -infoOfState="Pending"
 # Combining filters with JSON outpout 👍
 flyway info -outputType=json -infoOfState="Pending"
 
-# 2- Updating configuration
+# 2- Changing target database (updating config file)
 # Change config file configuration
 # Remove existing config file
 unset FLYWAY_CONFIG_FILES
@@ -50,8 +51,8 @@ unset FLYWAY_CONFIG_FILES
 # Set new config file
 export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_02/ConfigFile/flyway.conf;
 
-# 3- Review and perform migrations
-# Review sql migrations
+# 3- Review and perform Flyway migrations
+# Review sql scripts
 Demo_02
 └── SQLScripts
     ├── Repeatable
@@ -81,19 +82,22 @@ Demo_02
 # Perform migrations
 flyway migrate
 
-# 4- Application improvements
+# 4- World Globe application - New feature scenario
 
-# New Feature to show information about all lakes around the globe, including a description, its dimensions and water quality
-# ~ 117 millions of rows
+# World Globe v3 - New Feature:
+# Add information about all exiting lakes around the globe. Including a short description, its dimensions and water quality
+# 3 SQL migrations: 1 table, 1 view and ~117 millions of rows
+
+# SQL migrations
 code./CherryPick/V3.1__Create-LakesTable.sql
 code./CherryPick/R__LakesView.sql
 code./CherryPick/V3.2__Load-Lakes-TableData.sql
 
 # Copy scripts from Cherry Pick to SQLScripts/Versioned folder
 cp ./CherryPick/V3.1__Create-LakesTable.sql ./SQLScripts/Versioned/V3.1__Create-LakesTable.sql
-cp ./CherryPick/V3.2__Load-Lakes-TableData.sql ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
+cp ./CherryPick/R__LakesView.sql ./SQLScripts/Repeatable/R__LakesView.sql
 
-# 5- Enable cherry pick
+# 5- Enable out of order migrations
 # Modify flyway config file
 code ./ConfigFile/flyway.conf
 
@@ -106,24 +110,28 @@ flyway migrate -cherryPick="3.1,LakesView"
 
 # Later during the day
 # Including long running migration only, out of order
-cp ./CherryPick/R__LakesView.sql ./SQLScripts/Repeatable/R__LakesView.sql
-code ./SQLScripts/Repeatable/R__LakesView.sql
+cp ./CherryPick/V3.2__Load-Lakes-TableData.sql ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
+code ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
 
 # Perform migration
 flyway migrate -cherryPick="3.2"
 
-# 7- Hot-fix synchronization
+# 7- World Globe application - Hot-fix scenario
 
-# Missing flags picture, adding column manually
+# World Globe v4 - Hot-fix:
+# A developer found that there is a column in the countries table. The developer added the column manually
+
+# 8- Manual change
 # PGAdmin from web browser
 open http://localhost:5050/
 
-# Migrations synchronization
+# 9- Generate script and synchronize migrations
 # Copy scripts from Hotfix to SQLScripts/Versioned folder
 cp ./Hotfix/V4.1__Add-FlagColumn-CountriesTable.sql ./SQLScripts/Versioned/V4.1__Add-FlagColumn-CountriesTable.sql
 cp ./Hotfix/V4.2__Load-CountryFlags-TableData.sql ./SQLScripts/Versioned/V4.2__Load-CountryFlags-TableData.sql
 
-# Perform migration, skipping execution
+# 10- Perform migration, skipping execution
+Perform migration, skipping execution
 flyway migrate -skipExecutingMigrations=true
 
 # Check migrations state
