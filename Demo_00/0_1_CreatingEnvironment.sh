@@ -5,11 +5,6 @@
 #   3- Check all components (containers, network, volumes)
 #   4- Destroy demo environment
 # -----------------------------------------------------------------------------
-# Reference:
-#   https://flywaydb.org/documentation/
-#   https://github.com/flyway/flyway-docker
-#   https://hub.docker.com/r/flyway/flyway
-#   https://github.com/pthom/northwind_psql
 #
 
 # 0- Env variables | demo path

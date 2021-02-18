@@ -14,6 +14,7 @@
 
 # 0- Env variables | demo path
 cd ~/Documents/Redgate-Summit/Demo_01;
+unset FLYWAY_CONFIG_FILES;
 export FLYWAY_CONFIG_FILES=/Users/carlos/Documents/Redgate-Summit/Demo_01/ConfigFile/flyway.conf;
 
 # Environment Cleanup 
@@ -49,6 +50,8 @@ Demo_01
 │   └── flyway.conf
 └── SQLScripts
     ├── Repeatable
+    │   ├── R__EmployeesView.sql
+    │   └── R__ProductsView.sql
     ├── Undo
     │   ├── U1.1__Drop-CustomerRelated-Tables.sql
     │   ├── U1.2__Drop-ProductRelated-Tables.sql

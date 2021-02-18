@@ -86,7 +86,7 @@ flyway migrate
 
 # World Globe v3 - New Feature:
 # Add information about all exiting lakes around the globe. Including a short description, its dimensions and water quality
-# 3 SQL migrations: 1 table, 1 view and ~117 millions of rows
+# 3 SQL migrations: 1 table, 1 view and ~117 millions of rows 🧐
 
 # SQL migrations
 code./CherryPick/V3.1__Create-LakesTable.sql
@@ -115,13 +115,14 @@ code ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
 
 # Perform migration
 flyway migrate -cherryPick="3.2"
+flyway info
 
 # 7- World Globe application - Hot-fix scenario
 
 # World Globe v4 - Hot-fix:
 # A developer found that there is a column in the countries table. The developer added the column manually
 
-# 8- Manual change
+# 8- Manual change 🧐
 # PGAdmin from web browser
 open http://localhost:5050/
 
@@ -131,7 +132,6 @@ cp ./Hotfix/V4.1__Add-FlagColumn-CountriesTable.sql ./SQLScripts/Versioned/V4.1_
 cp ./Hotfix/V4.2__Load-CountryFlags-TableData.sql ./SQLScripts/Versioned/V4.2__Load-CountryFlags-TableData.sql
 
 # 10- Perform migration, skipping execution
-Perform migration, skipping execution
 flyway migrate -skipExecutingMigrations=true
 
 # Check migrations state
