@@ -85,7 +85,7 @@ flyway migrate
 # 4- World Globe application - New feature scenario
 
 # World Globe v3 - New Feature:
-# Add information about all exiting lakes around the globe. Including a short description, its dimensions and water quality
+# Add information about all exiting lakes around the world. Including a short description, its dimensions and water quality
 # 3 SQL migrations: 1 table, 1 view and ~117 millions of rows 🧐
 
 # SQL migrations
@@ -94,8 +94,8 @@ code./CherryPick/R__LakesView.sql
 code./CherryPick/V3.2__Load-Lakes-TableData.sql
 
 # Copy scripts from Cherry Pick to SQLScripts/Versioned folder
-cp ./CherryPick/V3.1__Create-LakesTable.sql ./SQLScripts/Versioned/V3.1__Create-LakesTable.sql
-cp ./CherryPick/R__LakesView.sql ./SQLScripts/Repeatable/R__LakesView.sql
+cp ./CherryPick/V3.1__Create-LakesTable.sql ./SQLScripts/Versioned/V3.1__Create-LakesTable.sql;
+cp ./CherryPick/R__LakesView.sql ./SQLScripts/Repeatable/R__LakesView.sql;
 
 # 5- Enable out of order migrations
 # Modify flyway config file
@@ -111,7 +111,6 @@ flyway migrate -cherryPick="3.1,LakesView"
 # Later during the day
 # Including long running migration only, out of order
 cp ./CherryPick/V3.2__Load-Lakes-TableData.sql ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
-code ./SQLScripts/Versioned/V3.2__Load-Lakes-TableData.sql
 
 # Perform migration
 flyway migrate -cherryPick="3.2"
@@ -128,8 +127,8 @@ open http://localhost:5050/
 
 # 9- Generate script and synchronize migrations
 # Copy scripts from Hotfix to SQLScripts/Versioned folder
-cp ./Hotfix/V4.1__Add-FlagColumn-CountriesTable.sql ./SQLScripts/Versioned/V4.1__Add-FlagColumn-CountriesTable.sql
-cp ./Hotfix/V4.2__Load-CountryFlags-TableData.sql ./SQLScripts/Versioned/V4.2__Load-CountryFlags-TableData.sql
+cp ./Hotfix/V4.1__Add-FlagColumn-CountriesTable.sql ./SQLScripts/Versioned/V4.1__Add-FlagColumn-CountriesTable.sql;
+cp ./Hotfix/V4.2__Load-CountryFlags-TableData.sql ./SQLScripts/Versioned/V4.2__Load-CountryFlags-TableData.sql;
 
 # 10- Perform migration, skipping execution
 flyway migrate -skipExecutingMigrations=true

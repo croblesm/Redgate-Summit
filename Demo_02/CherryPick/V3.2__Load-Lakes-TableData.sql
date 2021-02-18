@@ -14,5 +14,4 @@
 -- Load data into lakes table
 -- ==============================================================================
 
-SELECT 'Loading lake data, 117 million rows ...'; SELECT pg_sleep(3600); SELECT 'wow, this insert operation took one hour';
---SELECT 'Hello here we go again ...';
+SELECT 'Loading world''s lake data, 117 million rows ...'; SELECT pg_sleep(5); SELECT 'wow, this insert operation took a few hours';

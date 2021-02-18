@@ -1,7 +1,7 @@
 # Demo 01 - Regular migrations
 # 
 #   1- Connect to BudgetFoods database using PgAdmin
-#   2- Review Flyway migrations folder structure
+#   2- Review Flyway migrations folder structure`
 #   3- Flyway migration example
 # -----------------------------------------------------------------------------
 # Reference:
